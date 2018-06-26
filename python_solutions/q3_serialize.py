@@ -11,11 +11,13 @@
 
 # The binary tree class
 class Node:
+    # Constructor for the binary tree
     def __init__(self, val=None, left=None, right=None):
         self.val = val
         self.left = left
         self.right = right
 
+    # Prints out the binary tree
     def printTree(self):
         if(self.left):
             self.left.printTree()
@@ -23,6 +25,7 @@ class Node:
         if(self.right):
             self.right.printTree()
 
+    # Recursively builds the bin tree when inserting a node
     def addNode(self, inVal):
         if self.val:
             if(self.val >= inVal):
@@ -40,6 +43,7 @@ class Node:
         else:
             self.val = inVal
 
+    # Recursive method for serializing the tree values
     def serialHelper(self, arr):
         # Current node
         if(self.val):
@@ -61,11 +65,13 @@ class Node:
             arr.append(-1)
             arr.append(-1)
     
+# Function called to sealize the tree using the helper method in the class
 def serialize(root):
     serialArr = []
     root.serialHelper(serialArr)
     return serialArr
 
+# Function toe deserialize the array returned by seralize
 def deserialize(inArr):
     root = Node()
     for element in inArr:
@@ -74,6 +80,10 @@ def deserialize(inArr):
 
     return root
 
+
+# -----
+# Driver code
+# -----
 tree = Node("M")
 tree.addNode("A")
 tree.addNode("Z")
