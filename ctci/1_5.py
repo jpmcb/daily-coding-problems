@@ -4,8 +4,7 @@
 import unittest
 
 def oneAway(x, y):
-    print(x, y)
-
+    # Build the first hash tables
     x_hash = {}
     for char in x:
         x_hash[char] = 0
@@ -20,9 +19,12 @@ def oneAway(x, y):
     for char in y:
         y_hash[char] += 1
 
+    # Designate testing variables
     oneAway = True
     longer = x_hash 
     other = y_hash
+
+    # determine the longer string
     if len(x) >= len(y):
         longer = x_hash
         other = y_hash
@@ -30,20 +32,19 @@ def oneAway(x, y):
         longer = y_hash
         other = x_hash
 
+    # Go through the longer hash table,
+    # check to see if one is away
     for key in longer:
-        for i in range(longer[key]):
+        for _ in range(longer[key]):
             print(key)
             if key not in other:
                 if oneAway == False:
-                    print("Didn't find it in y table")
                     return False
                 else:
-                    print("making one away false")
                     oneAway = False
 
             elif other[key] == 0:
                 if oneAway == False:
-                    print("The other key is 0!!")
                     return False
                 else:
                     oneAway = False
