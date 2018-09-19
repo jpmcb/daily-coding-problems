@@ -5,28 +5,32 @@
 
 import unittest
 
-def swap(x, i, y, j):
-    temp = x[i]
-    x[i] = y[j]
-    y[j] = temp
-
 def rotate(matrix):
 
     n = len(matrix)
-    for row in range(n // 2 + 1):
-        for col in range(n):
+    for layer in range(n // 2):
+        # layer variables
+        first = layer
+        last = n - layer - 1
 
-            saved = None
+        for i in range(first, last):
+            offset = i - first
+            saved = matrix[first][i]
 
-            # Top
-            saved = matrix[row][(col + 4)]
-            swap(matrix)
+            # Left -> Top
+            matrix[first][i] = matrix[last - offset][first]
 
-            # Right
+            # Bottom -> Left
+            matrix[last - offset][first] = matrix[last][last - offset]
 
-            # Bottom
+            # Right -> Bottom
+            matrix[last][last - offset] = matrix[i][last]
 
-            # Left
+            # Top -> Right
+            matrix[i][last] = saved
+
+    print(matrix)
+    return matrix
     
 
 class Test(unittest.TestCase):
@@ -46,7 +50,7 @@ class Test(unittest.TestCase):
 
     def testRotate(self):
         returned = rotate(self.data[0])
-        self.assertTrue(returend == self.data[1])
+        self.assertTrue(returned == self.data[1])
         
 
 if(__name__ == '__main__'):
