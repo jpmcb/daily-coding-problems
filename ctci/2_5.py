@@ -22,6 +22,7 @@ def sumList(ll_a, ll_b):
             value += current_b.data
             current_b = current_b.next
 
+        # Add appropriate value to new LL and make carry as needed
         ll.add((value + carry) % 10)
         carry = 1 if value >= 10 else 0
         value = 0
