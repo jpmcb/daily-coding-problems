@@ -1,6 +1,5 @@
 # Three in one
 
-
 # --------------
 # implementation: A fairly simple array that holds 3 stacks
 
