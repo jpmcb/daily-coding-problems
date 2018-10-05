@@ -12,11 +12,24 @@ def count_bits(x):
         x >>= 1
     return num_bits
 
+def get_bits(x):
+    num_bits = 0
+    while x:
+        num_bits += 1
+        x >>= 1
+    return num_bits
+
 class Test(unittest.TestCase):
     def test_bitCount(self):
         self.assertTrue(1 == count_bits(1))
         self.assertTrue(8 == count_bits(255))
         self.assertTrue(7 == count_bits(254))
+
+    def test_getBits(self):
+        self.assertTrue(1 == get_bits(1))
+        self.assertTrue(2 == get_bits(2))
+        self.assertTrue(8 == get_bits(255))
+        self.assertTrue(8 == get_bits(254))
 
 if(__name__ == "__main__"):
     unittest.main()
