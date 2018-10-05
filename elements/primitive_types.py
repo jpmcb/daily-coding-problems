@@ -12,6 +12,7 @@ def count_bits(x):
         x >>= 1
     return num_bits
 
+# Gets the number of bits, 1s and 0s used for a word
 def get_bits(x):
     num_bits = 0
     while x:
@@ -19,17 +20,27 @@ def get_bits(x):
         x >>= 1
     return num_bits
 
+# Gets the parity of a number 
+def parity(x):
+    result = 0
+    while x:
+        result ^= x & 1
+        x >>= 1
+    return result
+
 class Test(unittest.TestCase):
-    def test_bitCount(self):
+    def test_prim(self):
         self.assertTrue(1 == count_bits(1))
         self.assertTrue(8 == count_bits(255))
         self.assertTrue(7 == count_bits(254))
 
-    def test_getBits(self):
         self.assertTrue(1 == get_bits(1))
         self.assertTrue(2 == get_bits(2))
         self.assertTrue(8 == get_bits(255))
         self.assertTrue(8 == get_bits(254))
+
+        self.assertTrue(0 == parity(0b1001))
+        self.assertTrue(1 == parity(0b0111))
 
 if(__name__ == "__main__"):
     unittest.main()
