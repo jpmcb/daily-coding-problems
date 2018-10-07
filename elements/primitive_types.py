@@ -28,6 +28,16 @@ def parity(x):
         x >>= 1
     return result
 
+# Given the two indexes (i, j) of a binary number (x)
+def bit_switch(i, j, x):
+    # Check to see if the two bits are not already the same
+    if (x >> i) & 1 != (x >> j) & 1:
+        # Create the bit bask with 1s in the position of i and j indexes
+        mask = (1 << i) | (1 << j)
+        # Flip the bits using the XOR operation and the generated mask
+        x ^= mask
+    return x
+
 class Test(unittest.TestCase):
     def test_prim(self):
         self.assertTrue(1 == count_bits(1))
@@ -41,6 +51,8 @@ class Test(unittest.TestCase):
 
         self.assertTrue(0 == parity(0b1001))
         self.assertTrue(1 == parity(0b0111))
+
+        self.assertTrue(0b10000111 == bit_switch(0, 4, 0b10010110))
 
 if(__name__ == "__main__"):
     unittest.main()
