@@ -1,6 +1,5 @@
 # Interview Problems
-Various solutions to various interview
-problems found on leetcode, in books,
+Various solutions to interview problems found on leetcode, books,
 and throughout the internet
 ___
 
